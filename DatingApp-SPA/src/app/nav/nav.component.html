@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
    <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/home']">Dating App</a>
+    <a class="navbar-brand" [routerLink]="['/']">Dating App</a>
 
       <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
         <li class="nav-item" routerLinkActive="router-link-active">
@@ -16,6 +16,9 @@
       </ul>
 
       <div *ngIf="loggedIn()" class="dropdown pr-3" dropdown>
+          <span class="mr-1">
+            <img src="{{photoUrl}}">
+          </span>
           <a class="dropdown-toggle text-light" dropdownToggle>
             Welcome {{authService.decodedToken.unique_name | titlecase}}
           </a>
