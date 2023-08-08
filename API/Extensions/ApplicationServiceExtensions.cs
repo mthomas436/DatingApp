@@ -9,6 +9,7 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
+            /*
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder =>
@@ -18,6 +19,7 @@ namespace API.Extensions
                     .AllowAnyHeader();
                 });
             });
+            */
 
             services.AddDbContext<DataContext>(options =>
             {
