@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { User } from '../_models/user';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -15,7 +17,7 @@ export class NavComponent implements OnInit {
   currentUser$: Observable<User | null> = of(null);
 
   lresponse: any = '';
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private router: Router, private toastr: ToastrService) {
  
    }
 
@@ -36,16 +38,15 @@ export class NavComponent implements OnInit {
   login() {
  
     this.accountService.login(this.model).subscribe({
-      next: response => {
-      },
-      error: error => console.log(error)
+      next: _ => this.router.navigateByUrl('/members'),
+      error: error => this.toastr.error(error.error)
     });
  
   }
 
   logout() {
     this.accountService.logout();
-   // this.loggedIn = false;
+    this.router.navigateByUrl("/");
   }
 
   getLoggedInUser() {
