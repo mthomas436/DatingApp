@@ -48,7 +48,7 @@ export class NavComponent implements OnInit {
     this.accountService.logout();
     this.router.navigateByUrl("/");
   }
-
+/*
   getLoggedInUser() {
     let usr: any;
     this.accountService.currentUser$.subscribe({
@@ -61,5 +61,7 @@ export class NavComponent implements OnInit {
     
     return usr as User;
   }
+*/
+  
 
 }
