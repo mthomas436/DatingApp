@@ -27,6 +27,7 @@ namespace API.Extensions
             });
 
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<iUserRepository, UserRepository>();
 
             return services;
         }
