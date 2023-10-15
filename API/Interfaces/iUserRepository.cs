@@ -11,5 +11,7 @@ namespace API.Interfaces
         Task<MemberDto> GetUserByIdAsync(int id);
         Task<MemberDto> GetUserByUserNameAsync(string username);
 
+        Task<bool> UpdateUserAsync(string username, MemberUdateDto updatedUser);
+
     }
 }

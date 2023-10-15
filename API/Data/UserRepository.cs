@@ -3,6 +3,7 @@ using API.Entities;
 using API.Interfaces;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace API.Data
 {
@@ -38,6 +39,26 @@ namespace API.Data
             return userToReturn;
  
         }
+
+        public async Task<bool> UpdateUserAsync(string username, MemberUdateDto updatedUser)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == username);
+
+            if (user == null) return false;
+
+
+            user.Introduction = updatedUser.Introduction;
+            user.LookingFor = updatedUser.LookingFor;
+            user.Interests = updatedUser?.Interests;
+            user.City = updatedUser?.City;
+            user.Country = updatedUser?.Country;
+
+            Update(user);
+
+            await SaveAllAsync();
+            return true;    
+        }
+
 
         public async Task<IEnumerable<MemberDto>> GetUsersAsync()
         {
